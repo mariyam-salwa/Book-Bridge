@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - BookBridge</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .auth-wrapper {
+      min-height: calc(100vh - 180px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1.5rem;
+    }
+    .auth-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      width: 100%;
+      max-width: 440px;
+      padding: 2.5rem;
+    }
+    .role-toggle {
+      display: flex;
+      background: var(--bg-alt);
+      border-radius: var(--radius-md);
+      padding: 0.25rem;
+      margin-bottom: 1.75rem;
+    }
+    .role-btn {
+      flex: 1;
+      padding: 0.5rem;
+      border: none;
+      background: transparent;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .role-btn.active {
+      background: white;
+      color: var(--primary);
+      box-shadow: var(--shadow-sm);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="site-header">
+    <div class="container navbar">
+      <a href="index.html" class="brand-logo">
+        <span class="brand-icon">📚</span>
+        <span>BookBridge</span>
+      </a>
+
+      <div class="nav-actions">
+        <span style="font-size: 0.85rem; color: var(--text-muted);">New to BookBridge?</span>
+        <a href="register.html" class="btn btn-outline-primary btn-sm">Sign Up</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="auth-wrapper">
+    <div class="auth-card">
+      
+      <div style="text-align: center; margin-bottom: 1.75rem;">
+        <h1 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 0.35rem;">Welcome Back</h1>
+        <p style="color: var(--text-muted); font-size: 0.875rem;">Sign in to access study resources and book exchanges</p>
+      </div>
+
+      <!-- Role Selection Toggle -->
+      <div class="role-toggle">
+        <button type="button" class="role-btn active" id="btnStudentRole" onclick="setRole('student')">Student Portal</button>
+        <button type="button" class="role-btn" id="btnAdminRole" onclick="setRole('admin')">Administrator</button>
+      </div>
+
+      <form action="dashboard.html" method="GET" id="loginForm">
+        <div class="form-group">
+          <label class="form-label" for="loginEmail" id="lblIdentifier">College Email / Student ID</label>
+          <input type="text" id="loginEmail" class="form-control" placeholder="e.g. rahul.cse@college.edu" required>
+        </div>
+
+        <div class="form-group">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+            <label class="form-label" for="loginPassword" style="margin-bottom: 0;">Password</label>
+            <a href="#" style="font-size: 0.75rem; color: var(--primary); font-weight: 600;">Forgot Password?</a>
+          </div>
+          <input type="password" id="loginPassword" class="form-control" placeholder="••••••••" required>
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; font-size: 0.85rem;">
+          <label style="display: flex; align-items: center; gap: 0.4rem; cursor: pointer;">
+            <input type="checkbox"> Remember on this device
+          </label>
+        </div>
+
+        <button type="submit" id="loginSubmitBtn" class="btn btn-primary btn-block btn-lg">
+          Sign In to Student Account
+        </button>
+      </form>
+
+      <div style="text-align: center; margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-muted);">
+        Don't have an account yet? <a href="register.html" style="color: var(--primary); font-weight: 600;">Register as Student</a>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function setRole(role) {
+      const studentBtn = document.getElementById('btnStudentRole');
+      const adminBtn = document.getElementById('btnAdminRole');
+      const lblIdentifier = document.getElementById('lblIdentifier');
+      const loginSubmitBtn = document.getElementById('loginSubmitBtn');
+      const loginForm = document.getElementById('loginForm');
+
+      if (role === 'student') {
+        studentBtn.classList.add('active');
+        adminBtn.classList.remove('active');
+        lblIdentifier.textContent = 'College Email / Student ID';
+        loginSubmitBtn.textContent = 'Sign In to Student Account';
+        loginForm.action = 'dashboard.html';
+      } else {
+        adminBtn.classList.add('active');
+        studentBtn.classList.remove('active');
+        lblIdentifier.textContent = 'Administrator Username / Admin ID';
+        loginSubmitBtn.textContent = 'Sign In as Administrator';
+        loginForm.action = 'admin.html';
+      }
+    }
+  </script>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="border: none; padding-top: 0;">
+        <p>&copy; 2026 BookBridge Project. Developed with Object-Oriented Programming Principles.</p>
+        <p style="color: #64748b;">Member 1 Responsibilities: UI/UX Design • Semantic HTML • Responsive CSS</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

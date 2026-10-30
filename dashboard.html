@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard - BookBridge</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .dashboard-header-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem 2rem;
+      margin: 2rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+    .metric-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+    }
+    .metric-num {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-top: 0.25rem;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="site-header">
+    <div class="container navbar">
+      <a href="index.html" class="brand-logo">
+        <span class="brand-icon">📚</span>
+        <span>BookBridge</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="explore.html" class="nav-link">Explore Materials</a>
+        <a href="explore.html?type=physical" class="nav-link">Physical Books</a>
+        <a href="upload.html" class="nav-link">Upload / Sell</a>
+        <a href="dashboard.html" class="nav-link active">My Dashboard</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <div style="width: 36px; height: 36px; background: var(--primary-light); color: var(--primary); font-weight: 700; border-radius: 50%; display: flex; align-items: center; justify-content: center;">RV</div>
+          <span style="font-size: 0.85rem; font-weight: 600;">Rahul Verma</span>
+        </div>
+        <a href="login.html" class="btn btn-outline btn-sm">Log Out</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="padding-bottom: 4rem;">
+    
+    <!-- User Profile Header Card -->
+    <div class="dashboard-header-card">
+      <div style="display: flex; align-items: center; gap: 1.25rem;">
+        <div style="width: 64px; height: 64px; border-radius: 50%; background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 1.75rem; font-weight: 800;">
+          RV
+        </div>
+        <div>
+          <h1 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 0.2rem;">Rahul Verma</h1>
+          <p style="color: var(--text-muted); font-size: 0.875rem;">
+            Computer Science & Engineering • Semester 5 • Student ID: <strong>STD-2024-041</strong>
+          </p>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 0.75rem;">
+        <a href="upload.html" class="btn btn-primary btn-sm">+ Upload / Sell Item</a>
+      </div>
+    </div>
+
+    <!-- Quick Metric Cards -->
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">My Uploads & Books</div>
+        <div class="metric-num">5</div>
+      </div>
+      <div class="metric-card">
+        <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Incoming Buy Requests</div>
+        <div class="metric-num" style="color: var(--accent);">2 Pending</div>
+      </div>
+      <div class="metric-card">
+        <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">My Purchase Requests</div>
+        <div class="metric-num">3</div>
+      </div>
+      <div class="metric-card">
+        <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Saved Materials</div>
+        <div class="metric-num" style="color: var(--secondary);">8</div>
+      </div>
+    </div>
+
+    <!-- Tab Navigation -->
+    <div class="tabs-nav">
+      <button class="tab-btn active" onclick="showDashboardTab('tab-incoming', this)">Incoming Book Requests (2)</button>
+      <button class="tab-btn" onclick="showDashboardTab('tab-sent', this)">My Sent Requests (3)</button>
+      <button class="tab-btn" onclick="showDashboardTab('tab-listings', this)">My Active Listings (5)</button>
+      <button class="tab-btn" onclick="showDashboardTab('tab-saved', this)">Saved Library (8)</button>
+    </div>
+
+    <!-- TAB 1: Incoming Book Requests (Buyer requests to this seller) -->
+    <div id="tab-incoming" class="tab-content active">
+      <div style="background: white; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden;">
+        <div style="padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
+          <h2 style="font-size: 1.1rem; font-weight: 700;">Purchase Requests for Your Listed Books</h2>
+          <span style="font-size: 0.8rem; color: var(--text-muted);">Coordinate direct campus handover & cash payment</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table-custom">
+            <thead>
+              <tr>
+                <th>Request ID</th>
+                <th>Book Title</th>
+                <th>Buyer Student</th>
+                <th>Proposed Location</th>
+                <th>Price (Cash)</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>REQ-1092</strong></td>
+                <td>Database System Concepts (6th Edition)</td>
+                <td>
+                  <div style="font-weight: 600;">Sneha Patel</div>
+                  <span style="font-size: 0.75rem; color: var(--text-muted);">IT Dept • Ph: 98711 00000</span>
+                </td>
+                <td>Central Library Reading Room</td>
+                <td><strong>₹300</strong></td>
+                <td><span class="badge badge-pending">Pending Review</span></td>
+                <td>
+                  <div style="display: flex; gap: 0.4rem;">
+                    <button class="btn btn-secondary btn-sm" onclick="alert('Request Accepted! Arrange handover with buyer.')">Accept</button>
+                    <button class="btn btn-outline btn-sm" onclick="alert('Request Declined.')">Decline</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>REQ-1084</strong></td>
+                <td>Modern Operating Systems (4th Edition)</td>
+                <td>
+                  <div style="font-weight: 600;">Kavita Nair</div>
+                  <span style="font-size: 0.75rem; color: var(--text-muted);">CSE Dept • Ph: 98222 11111</span>
+                </td>
+                <td>Main Cafeteria (Lunch 1 PM)</td>
+                <td><strong>₹450</strong></td>
+                <td><span class="badge badge-available">Handover Agreed</span></td>
+                <td>
+                  <button class="btn btn-primary btn-sm" onclick="alert('Transaction marked as completed! Book marked as Sold.')">Mark Cash Received</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: Sent Requests (Requests student sent to other sellers) -->
+    <div id="tab-sent" class="tab-content">
+      <div style="background: white; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden;">
+        <div style="padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border);">
+          <h2 style="font-size: 1.1rem; font-weight: 700;">My Purchase & Handover Requests</h2>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table-custom">
+            <thead>
+              <tr>
+                <th>Request ID</th>
+                <th>Book Requested</th>
+                <th>Seller</th>
+                <th>Offered Price</th>
+                <th>Date Requested</th>
+                <th>Transaction Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>REQ-1095</strong></td>
+                <td>Introduction to Algorithms (CLRS)</td>
+                <td>Arun Sharma (CSE Sem 6)</td>
+                <td>₹650 (Cash)</td>
+                <td>Today, 2:15 PM</td>
+                <td><span class="badge badge-pending">Waiting Seller Confirmation</span></td>
+                <td>
+                  <button class="btn btn-outline btn-sm" style="color: var(--danger); border-color: var(--danger);" onclick="alert('Request cancelled.')">Cancel Request</button>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>REQ-1060</strong></td>
+                <td>Discrete Mathematics and Its Applications</td>
+                <td>Pooja Sundaram (IT Sem 4)</td>
+                <td>₹350 (Cash)</td>
+                <td>25 Oct 2026</td>
+                <td><span class="badge badge-available">Completed / Handed Over</span></td>
+                <td>
+                  <span style="font-size: 0.8rem; color: var(--text-muted);">Finished</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: My Active Listings -->
+    <div id="tab-listings" class="tab-content">
+      <div style="background: white; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden;">
+        <div style="padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
+          <h2 style="font-size: 1.1rem; font-weight: 700;">My Uploaded Materials & Listed Books</h2>
+          <a href="upload.html" class="btn btn-primary btn-sm">+ Add New</a>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table-custom">
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Title</th>
+                <th>Subject / Dept</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="badge badge-digital">Digital PDF</span></td>
+                <td>OOP with Java Complete Notes</td>
+                <td>Java / CSE S3</td>
+                <td><span class="badge badge-free">Free</span></td>
+                <td><span class="badge badge-available">Active (84 Downloads)</span></td>
+                <td>
+                  <button class="btn btn-outline btn-sm">Edit</button>
+                  <button class="btn btn-outline btn-sm" style="color: var(--danger);">Delete</button>
+                </td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-physical">Physical Book</span></td>
+                <td>Modern Operating Systems (4th Edition)</td>
+                <td>OS / CSE S4</td>
+                <td>₹450</td>
+                <td><span class="badge badge-pending">Pending Handover</span></td>
+                <td>
+                  <button class="btn btn-outline btn-sm">Edit</button>
+                  <button class="btn btn-outline btn-sm">Mark Available</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: Saved Library -->
+    <div id="tab-saved" class="tab-content">
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;">
+        
+        <div class="material-card">
+          <span class="card-header-badge badge badge-free">Free</span>
+          <div class="card-media">
+            <span class="card-media-icon">📝</span>
+          </div>
+          <div class="card-content">
+            <div class="card-meta">
+              <span class="badge badge-digital">Question Paper</span>
+              <span>CS Dept • Sem 4</span>
+            </div>
+            <h3 class="card-title">DBMS Previous 5 Years Solved Papers</h3>
+            <p class="card-desc">Saved on 28 Oct 2026. Includes query solutions and relational calculus.</p>
+            <div class="card-footer">
+              <a href="material-detail.html" class="btn btn-primary btn-sm btn-block">Download File</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    function showDashboardTab(tabId, btn) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      btn.classList.add('active');
+    }
+  </script>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="border: none; padding-top: 0;">
+        <p>&copy; 2026 BookBridge Project. Developed with Object-Oriented Programming Principles.</p>
+        <p style="color: #64748b;">Member 1 Responsibilities: UI/UX Design • Semantic HTML • Responsive CSS</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
