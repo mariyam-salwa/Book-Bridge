@@ -42,8 +42,6 @@ Mariyam_Salwa/
 │       ├── UploadPanel.java        Upload / list a book    (was upload.html)
 │       ├── DashboardPanel.java     Student dashboard       (was dashboard.html)
 │       └── AdminPanel.java         Administrator panel     (was admin.html)
-├── docs/
-│   └── MEMBER_1_VIVA_GUIDE.md
 ├── .vscode/                        VS Code run settings
 ├── run.bat                         Compile + run on Windows
 └── run.sh                          Compile + run on macOS / Linux
