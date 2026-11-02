@@ -12,10 +12,13 @@ public class PhysicalBook {
 
     private String title;
     private String author;
+    private String isbn;
     private String category;
+    private String department;
     private String bookCondition;
     private double price;
     private String sellerName;
+    private String handoverLocation;
     private String description;
     private String status;
 
@@ -42,12 +45,28 @@ public class PhysicalBook {
         this.author = author;
     }
 
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
     public String getCategory() {
         return category;
     }
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
     public String getBookCondition() {
@@ -72,6 +91,14 @@ public class PhysicalBook {
 
     public void setSellerName(String sellerName) {
         this.sellerName = sellerName;
+    }
+
+    public String getHandoverLocation() {
+        return handoverLocation;
+    }
+
+    public void setHandoverLocation(String handoverLocation) {
+        this.handoverLocation = handoverLocation;
     }
 
     public String getDescription() {
