@@ -9,9 +9,9 @@
 
 | Member | Core Responsibilities | Status |
 | :--- | :--- | :--- |
-| **Member 1 (You)** | **2. UI/UX Design<br>3. HTML Structure<br>4. CSS Styling & Responsiveness** | **✅ Completed** |
-| **Member 2** | 5. JavaScript (Client Interactions, Form Validation, DOM manipulation)<br>6. Java OOP Core Classes & Logic | 🔄 In Progress |
-| **Member 3** | 7. Spring Boot REST Controllers & Services<br>8. MySQL Database Models & Repositories<br>9. Frontend & Backend API Integration | 🔄 Pending |
+| **Mariyam Salwa A P** | **2. UI/UX Design<br>3. HTML Structure<br>4. CSS Styling & Responsiveness** | **✅ Completed** |
+| **Shamla Shirin** | 5. JavaScript (Client Interactions, Form Validation, DOM manipulation)<br>6. Java OOP Core Classes & Logic | 🔄 In Progress |
+| **Khadeejath Naziya P M** | 7. Spring Boot REST Controllers & Services<br>8. MySQL Database Models & Repositories<br>9. Frontend & Backend API Integration | 🔄 Pending |
 
 ---
 
